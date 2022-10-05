@@ -225,9 +225,9 @@ async def photo_upload(message: Message, path, del_path: bool = False, extra: st
             photo=str_path,
             caption=path.name,
             parse_mode=enums.ParseMode.HTML,
-            disable_notification=True,
-            progress=progress,
-            progress_args=(message, f"uploading {extra}", str_path)
+            disable_notification=True
+            # progress=progress,
+            # progress_args=(message, f"uploading {extra}", str_path)
         )
     except ValueError as e_e:
         await sent.edit(f"Skipping `{str_path}` due to {e_e}")
@@ -236,7 +236,7 @@ async def photo_upload(message: Message, path, del_path: bool = False, extra: st
         raise u_e
     else:
         await sent.delete()
-        await finalize(message, msg, start_t)
+        # await finalize(message, msg, start_t)
         if os.path.exists(str_path) and del_path:
             os.remove(str_path)
 
